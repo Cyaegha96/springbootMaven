@@ -9,10 +9,13 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.springboot2recipes</groupId>
-	<artifactId>ch01</artifactId>
+	<artifactId>test</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springboot</name>
 	<description>boar project for SpringBoot</description>
+	<properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	
 	<dependencies>
 		<dependency>
