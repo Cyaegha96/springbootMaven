@@ -1,4 +1,4 @@
-package test;
+package calcurator;
 
 public interface Operation {
 	int apply(int lhs, int rhs);

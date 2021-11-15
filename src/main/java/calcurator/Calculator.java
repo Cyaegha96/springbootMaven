@@ -1,4 +1,4 @@
-package test;
+package calcurator;
 
 import java.util.Collection;
 
