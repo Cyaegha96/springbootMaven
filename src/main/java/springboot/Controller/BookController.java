@@ -39,4 +39,9 @@ public class BookController {
 		return "books/details";		
 	}
 	
+	@GetMapping("/books/500")
+	public void error() {
+		throw new NullPointerException("Dummy NullpointerException");
+	}
+	
 }	
