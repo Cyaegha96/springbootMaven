@@ -1,15 +1,24 @@
 package springboot;
 
 
+import java.util.Locale;
+
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties.LocaleResolver;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.server.i18n.AcceptHeaderLocaleContextResolver;
+import org.springframework.web.server.i18n.FixedLocaleContextResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 
 
 @SpringBootApplication
-public class LibraryApplication {
+public class LibraryApplication  implements WebMvcConfigurer{
 
 	public static void main(String[] args) {
 		SpringApplication.run(LibraryApplication.class, args);
@@ -22,5 +31,20 @@ public class LibraryApplication {
 			bookService.create(new Book("9780451524935", "1984", "George Orwell"));
 			bookService.create(new Book("9780618260300", "The Hobbit", "J.R.R. Tolkien"));
 		};
+	}
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(localeChangeInterceptor());
+	}
+
+	@Bean
+	public LocaleChangeInterceptor localeChangeInterceptor() {
+		return new LocaleChangeInterceptor();
+	}
+
+	@Bean
+	public CookieLocaleResolver localeResolver() {
+		return new CookieLocaleResolver();
 	}
 }
